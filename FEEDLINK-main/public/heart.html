@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find NGOs | FeedLink</title>
+    <link rel="stylesheet" href="style/all.css">
+    <link rel="stylesheet" href="style/heart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="heart-page">
+
+<header class="navbar">
+    <div class="navbar-container">
+        <div class="logo">
+            <a href="#" class="logo">
+
+     <svg
+      viewBox="0 0 600 200"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+
+      <!-- FEED -->
+      <text
+        x="20"
+        y="130"
+        font-size="100"
+        font-family="Arial, sans-serif"
+        font-weight="700"
+        fill="#f40e31"
+      >
+        Heart
+      </text>
+
+      <!-- LINK -->
+      <text
+        x="280"
+        y="130"
+        font-size="100"
+        font-family="Arial, sans-serif"
+        font-weight="700"
+        fill="white"
+      >
+       Link
+      </text>
+
+      <!-- CURVE (d → n) -->
+      <path
+    id="foodPath"
+    d="M 220 140
+       C 280 190, 360 190, 420 150
+       S 500 120, 540 140"
+    fill="none"
+    stroke="#f40e31"
+    stroke-width="6"
+    stroke-dasharray="10 14"
+    stroke-linecap="round"
+  />
+
+      <polygon
+    points="0,-7 16,0 0,7"
+    fill="white">
+    <animateMotion
+      dur="2.5s"
+      repeatCount="indefinite"
+      rotate="auto">
+      <mpath href="#foodPath"/>
+    </animateMotion>
+  </polygon> 
+  </svg>
+  </a>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="donate.html" class="nav-link">Donate Food</a>
+            <a href="login.html" class="nav-link login-btn">Login</a>
+            <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </div>
+    <!-- Chat Toggle -->
+<button id="chat-toggle"><i class="fas fa-comments"></i> Chat</button>
+
+<!-- Overlay -->
+<div id="chat-overlay">
+    <iframe src="chat.html?theme=heart"></iframe>
+</div>
+    </header>
+    <section class="about-heartlink">
+    <h2>Why Heart Link?</h2>
+    <p>
+        Heart Link extends FeedLink’s mission beyond food. 
+        Many families need more than meals — they need warm clothes, 
+        educational books, and joyful toys for children.
+    </p>
+
+  <div class="stats">
+
+    <div class="stat-box">
+        <h3 id="clothes-count"></h3>
+        <div class="loader" id="clothes-loader"></div>
+        <p>Clothes Donated</p>
+    </div>
+
+    <div class="stat-box">
+        <h3 id="books-count"></h3>
+        <div class="loader" id="books-loader"></div>
+        <p>Books Shared</p>
+    </div>
+
+    <div class="stat-box">
+        <h3 id="toys-count"></h3>
+        <div class="loader" id="toys-loader"></div>
+        <p>Toys Delivered</p>
+    </div>
+
+</div>
+
+
+</section>
+
+
+    <!--  head-->
+    <main class="main-content">
+        <div class="heart-h1">
+            <h1>More To Donate</h1>
+        </div>      
+    
+    <!-- Donation Sections -->
+    <section class="donation-container">
+
+        <div class="donation-card">
+            <h2><i class="fas fa-shirt"></i> Clothes Donation</h2>
+            <p>Donate gently used clothes to help families stay warm and confident.</p>
+           <button class="donate-btn" data-type="Clothes">Donate Clothes</button>
+        </div>
+
+        <div class="donation-card">
+            <h2><i class="fas fa-book"></i> Books Donation</h2>
+            <p>Share knowledge and education by donating books to children and students.</p>
+            <button class="donate-btn" data-type="Books">Donate Books</button>
+        </div>
+
+        <div class="donation-card">
+            <h2><i class="fas fa-puzzle-piece"></i> Toys Donation</h2>
+            <p>Bring smiles to children by donating toys that can create joyful memories.</p>
+            <button class="donate-btn" data-type="Toys">Donate Toys</button>
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+<footer class="footer">
+    <div class="section-container">
+        <div class="footer-bottom">
+            <p>&copy; 2026 FeedLink | All Rights Reserved | Recovering Food, Feeding Hope</p>
+        </div>
+    </div>
+</footer>
+
+
+
+<script src="script/api-config.js"></script>
+<script src="script/api-utils.js"></script>
+<script src="script/api.js"></script>
+<script src="script/find-ngo-handler.js"></script>
+<script src="script/all.js"></script>
+<script src="script/heart.js"></script>
+</body>
+</html>

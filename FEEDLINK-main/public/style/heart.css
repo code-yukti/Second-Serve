@@ -1,0 +1,286 @@
+
+.heart-h1 {
+    text-align: center;
+    margin: 25px 0;
+
+} 
+     .about-heartlink {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.about-heartlink h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #ff6b81;
+}
+
+.about-heartlink p {
+    max-width: 700px;
+    margin: auto;
+    margin-bottom: 40px;
+    font-size: 17px;
+    color: #555;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.stats h3 {
+    font-size: 28px;
+    color: #ff6b81;
+}
+
+.stats p {
+    font-size: 14px;
+    color: #666;
+}
+ 
+      
+      /* Donation Section */
+.donation-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px 20px;
+    flex-wrap: wrap;
+}
+
+.donation-card {
+    background: white;
+    width: 300px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.donation-card:hover {
+    transform: translateY(-10px);
+     border: 3px solid #ff6b81;
+}
+
+.donation-card h2 {
+    margin-bottom: 15px;
+    color: #ff6b81;
+}
+
+.donation-card p {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.donation-card button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff6b81;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.donation-card button:hover {
+    background-color: #e5506b;
+}
+.popup-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #f40e31;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s ease;
+    z-index: 1000;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+.loader {
+    width: 25px;
+    height: 25px;
+    border: 4px solid #ffd1dc;
+    border-top: 4px solid #ff6b81;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 10px auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================
+   Stats Layout
+========================= */
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 60px 20px;
+}
+
+/* =========================
+   Individual Glass Box
+========================= */
+
+.stat-box {
+    text-align: center;
+    padding: 40px 35px;
+    min-width: 220px;
+
+    /* Glass Effect */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    box-shadow: 0 8px 25px rgba(255, 107, 129, 0.2);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* =========================
+   Numbers
+========================= */
+
+.stat-box h3 {
+    font-size: 34px;
+    color: #ff6b81;
+    margin-bottom: 15px;
+    min-height: 40px;
+}
+
+/* Text */
+.stat-box p {
+    font-size: 15px;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* =========================
+   Loader
+========================= */
+
+.loader {
+    width: 28px;
+    height: 28px;
+    border: 4px solid #ffd1dc;
+    border-top: 4px solid #ff6b81;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 10px auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 768px) {
+    .stats {
+        gap: 25px;
+    }
+
+    .stat-box {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Heart Link page overrides (high specificity to override global variables) */
+.heart-page .navbar {
+    background: linear-gradient(135deg, #ff6b81 0%, #ff94a8 100%) !important;
+    box-shadow: 0 6px 18px rgba(255, 107, 129, 0.18);
+}
+
+.heart-page .nav-link,
+.heart-page .nav-menu .dark-mode-toggle,
+.heart-page .nav-menu i {
+    color: white !important;
+}
+
+.heart-page .login-btn {
+    background: #ff6b81 !important;
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+.heart-page .login-btn:hover {
+    background: #e5506b !important;
+    color: white !important;
+}
+
+/* Ensure other accent controls on this page use the heart palette */
+.heart-page .primary-btn,
+.heart-page .donation-card button,
+.heart-page .popup-message,
+.heart-page .stat-box h3 {
+    background: transparent;
+    color: #ff6b81;
+}
+
+.heart-page .donation-card button {
+    background-color: #ff6b81;
+    color: white;
+}
+
+
+/* Heart Link footer overrides */
+.heart-page .footer {
+    background: linear-gradient(135deg, #ff6b81 0%, #ff94a8 100%) !important;
+    color: white !important;
+}
+
+.heart-page .footer a {
+    color: rgba(255,255,255,0.95) !important;
+    text-decoration: none;
+}
+
+.heart-page .footer a:hover {
+    color: #fff3f6 !important;
+}
+
+.heart-page .footer .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.15) !important;
+    padding-top: 20px;
+    color: rgba(255,255,255,0.95) !important;
+}
+/* Chat toggle color specific to Heart Link page */
+.heart-page #chat-toggle {
+    background: #f40e31 !important;
+    color: #ffffff !important;
+}
+
+.heart-page #chat-toggle:hover {
+    background: #d10b27 !important;
+}
+

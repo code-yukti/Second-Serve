@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<title>LinkBot AI Chat</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+#chatbox {
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+#chat-header {
+  background: linear-gradient(135deg,#2e7d32,#66bb6a);
+  color: #fff;
+  padding: 12px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Heart page theme (applied when ?theme=heart is present) */
+body.heart-theme #chat-header {
+  background: linear-gradient(135deg,#ff6b81 0%,#ff94a8 100%);
+}
+
+body.heart-theme button.send {
+  background: linear-gradient(135deg,#ff6b81 0%,#ff94a8 100%);
+}
+
+#close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+#close-btn:hover {
+  color: #e6e6e6;
+}
+
+#messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  background: #f7f7f7;
+}
+
+.msg {
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  max-width: 80%;
+  font-size: 14px;
+}
+
+.user {
+  background: #e3f2fd;
+  margin-left: auto;
+}
+
+.bot {
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+#input-area {
+  display: flex;
+  border-top: 1px solid #eee;
+}
+
+#input {
+  flex: 1;
+  border: none;
+  padding: 12px;
+  outline: none;
+}
+
+button.send {
+  background: #ffa000;
+  border: none;
+  color: white;
+  padding: 0 16px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div id="chatbox">
+  <div id="chat-header">
+    LinkBot
+    <button id="close-btn" onclick="closeChat()">✖</button>
+  </div>
+
+  <div id="messages"></div>
+
+  <div id="input-area">
+    <input id="input" placeholder="Ask about donating..." />
+    <button class="send" onclick="send()"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<script>
+// Apply heart theme when URL contains ?theme=heart or ?heart=1
+(function(){
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('theme') === 'heart' || params.get('heart') === '1') {
+      document.body.classList.add('heart-theme');
+    }
+  } catch(e) { /* ignore */ }
+})();
+
+const API_KEY = "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";
+
+const SYSTEM_PROMPT = `
+You are FeedLink & HeartLink AI 🤖
+
+FeedLink = food donation platform in India, specially west-Bengal.
+HeartLink = clothes, books, toys donation platform in India, specially west-Bengal.
+Made by team YUKTI from CEM,Kolagha.
+Developed by Dibbyan Ghosh,Krishna Prasad Khamrai and Arunava Mishra.Also Sanchita Maity and Nayan Mondal are our team members who helped us to build.
+You help users:
+- Donate food 🍱
+- Donate clothes 👕
+- Donate books 📚
+- Donate toys 🧸
+- Find NGOs
+- Food safety tips
+- Social impact awareness
+- Answer general questions about FeedLink and HeartLink
+- Provide donation guidance and encouragement
+- Always promote kindness, positivity, and the joy of giving!
+-Allways use emoji at the end of your messages to make it more friendly and engaging.
+-Don't answer anything unrelated to the project. If you don't know the answer, say "I'm not sure about that, but I'm here to help with anything related to FeedLink and HeartLink!" and encourage users to ask about donations or impact.
+
+Tone: warm, inspiring, short replies.
+Encourage kindness and helping people.
+Always promote donation and positivity.
+`;
+
+let chatHistory = [
+  { role: "system", content: SYSTEM_PROMPT }
+];
+
+// CLOSE BUTTON (needed for iframe popup)
+function closeChat() {
+  window.parent.postMessage("closeFeedlinkChat", "*");
+}
+
+// Send message
+async function send() {
+  const input = document.getElementById("input");
+  const text = input.value.trim();
+  if (!text) return;
+
+  input.value = "";
+  addMsg(text, "user");
+
+  chatHistory.push({ role: "user", content: text });
+  const fixed = getFixedReply(text);
+if (fixed) {
+  addMsg(fixed, "bot");
+  return;
+}
+  showTyping();
+
+  try {
+    const reply = await askGPT(chatHistory);
+    removeTyping();
+    addMsg(reply, "bot");
+
+    chatHistory.push({ role: "assistant", content: reply });
+
+    if (chatHistory.length > 12) {
+      chatHistory = [chatHistory[0], ...chatHistory.slice(-10)];
+    }
+
+  } catch (e) {
+    removeTyping();
+    addMsg("⚠️ AI connection error", "bot");
+  }
+}
+function getFixedReply(text) {
+  const msg = text.toLowerCase();
+
+  // ---------- ABOUT PROJECT ----------
+  if (msg.includes("who made feedlink") || msg.includes("who made feed link")) {
+    return "FeedLink was developed by team YUKTI from CEM Kolaghat";
+  }
+
+  if (msg.includes("who created you") || msg.includes("who built you")) {
+    return "I was created by frontend developer of this project 🚀";
+  }
+
+  // ---------- FOOD (FEEDLINK) ----------
+  if (msg.includes("how to donate food") || msg.includes("food donation")) {
+    return "🍱 To donate food:\n1️⃣ Click Donate\n2️⃣ Upload food photo\n3️⃣ Add location\nNearby NGOs will collect it 💚";
+  }
+
+  if (msg.includes("is food safe")) {
+    return "Ensure food is fresh, not expired, and packed hygienically. Avoid uncovered or stale food.";
+  }
+
+  // ================= HEARTLINK =================
+
+  // CLOTHES
+  if (msg.includes("donate clothes") || msg.includes("clothes donation")) {
+    return "👕 Welcome to HeartLink 💖\nDonate clean and usable clothes to help people in need.\nUpload photo + quantity to donate.";
+  }
+
+  // BOOKS
+  if (msg.includes("donate books") || msg.includes("book donation")) {
+    return "📚 HeartLink accepts book donations!\nSchool books, novels, guides — your books can change someone's future ✨";
+  }
+
+  // TOYS
+  if (msg.includes("donate toys") || msg.includes("toy donation")) {
+    return "🧸 Donate toys via HeartLink!\nOld toys = New smiles 😊\nEnsure toys are safe and usable.";
+  }
+
+  // HEARTLINK GENERAL
+  if (msg.includes("what is heartlink")) {
+    return "💖 HeartLink is part of FeedLink ecosystem.\nIt helps donate clothes, books, and toys to people in need.";
+  }
+
+  if (msg.includes("how to donate clothes") || msg.includes("heartlink process")) {
+    return "💖 HeartLink donation steps:\n1️⃣ Choose item type\n2️⃣ Upload image\n3️⃣ Add pickup location\nNGOs will contact you 📦";
+  }
+
+  return null;
+}
+
+
+// API call
+async function askGPT(messages) {
+  const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${API_KEY}`,
+      "Content-Type": "application/json",
+      "HTTP-Referer": window.location.href,
+      "X-Title": "FeedLink AI"
+    },
+    body: JSON.stringify({
+      model: "openai/gpt-oss-20b",
+      messages: messages,
+      temperature: 0.6,
+      max_tokens: 400
+    })
+  });
+
+  const data = await res.json();
+  return data.choices[0].message.content;
+}
+
+// UI helpers
+function addMsg(text, type) {
+  const div = document.createElement("div");
+  div.className = "msg " + type;
+  div.innerText = text;
+  document.getElementById("messages").appendChild(div);
+  scrollBottom();
+}
+
+let typingDiv = null;
+function showTyping() {
+  typingDiv = document.createElement("div");
+  typingDiv.className = "msg bot";
+  typingDiv.innerText = "Typing...";
+  document.getElementById("messages").appendChild(typingDiv);
+  scrollBottom();
+}
+
+function removeTyping() {
+  if (typingDiv) typingDiv.remove();
+}
+
+function scrollBottom() {
+  const msgBox = document.getElementById("messages");
+  msgBox.scrollTop = msgBox.scrollHeight;
+}
+// Send message on Enter key
+document.getElementById("input").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault(); // stop newline
+    send(); // call your send() function
+  }
+});
+
+</script>
+
+</body>
+</html>
