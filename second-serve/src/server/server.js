@@ -24,6 +24,7 @@ app.get("/health", (req, res) => {
   res.json({
     status: "OK",
     message: "Second Serve backend is running",
+    environment: process.env.VERCEL ? "production" : "development"
   });
 });
 
@@ -40,6 +41,15 @@ app.use("/api/admin", adminRoutes);
 /* 404 handler - serve index.html for SPA routing */
 app.use((req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
+});
+
+/* Error handling middleware */
+app.use((err, req, res, next) => {
+  console.error("❌ Error:", err.message);
+  res.status(500).json({ 
+    message: "Internal Server Error", 
+    error: process.env.VERCEL ? "Server error" : err.message 
+  });
 });
 
 // Export for Vercel serverless

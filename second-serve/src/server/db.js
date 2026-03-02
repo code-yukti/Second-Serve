@@ -1,5 +1,15 @@
 const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("./database.db");
+const path = require("path");
+
+// Use /tmp for serverless, or local directory for development
+const dbPath = process.env.VERCEL ? "/tmp/database.db" : "./database.db";
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) {
+    console.error("❌ Database connection error:", err.message);
+  } else {
+    console.log("✅ Database connected at:", dbPath);
+  }
+});
 
 db.configure("busyTimeout", 5000);
 
@@ -23,7 +33,7 @@ db.serialize(() => {
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `, (err) => {
-    if (err) console.error("❌ Error creating users table:", err);
+    if (err) console.error("❌ Error creating users table:", err.message);
     else console.log("✅ Users table ready");
   });
 
@@ -54,12 +64,14 @@ db.serialize(() => {
       FOREIGN KEY(claimed_by) REFERENCES users(id) ON DELETE SET NULL
     )
   `, (err) => {
-    if (err) console.error("❌ Error creating food_donations table:", err);
+    if (err) console.error("❌ Error creating food_donations table:", err.message);
     else console.log("✅ Food donations table ready");
   });
 
-  // Create indexes
-  db.run(`CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)`);
+  // Create indexes with error handling
+  db.run(`CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)`, (err) => {
+    if (err) console.error("❌ Index error:", err.message);
+  });
   db.run(`CREATE INDEX IF NOT EXISTS idx_users_role ON users(role)`);
   db.run(`CREATE INDEX IF NOT EXISTS idx_users_city ON users(city)`);
   db.run(`CREATE INDEX IF NOT EXISTS idx_food_donor ON food_donations(donor_id)`);
