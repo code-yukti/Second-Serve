@@ -21,7 +21,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "second-serve/public/$1"
+      "dest": "second-serve/src/server/server.js"
     }
   ],
   "env": {
