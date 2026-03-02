@@ -1,7 +1,7 @@
 # Database Schema Documentation
 
 ## Overview
-FEEDLINK uses SQLite3 with a relational schema designed for food donation management.
+Second Serve uses SQLite3 with a relational schema designed for food donation management.
 
 ## Tables
 

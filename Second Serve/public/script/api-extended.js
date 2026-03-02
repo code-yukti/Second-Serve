@@ -1,5 +1,5 @@
 /**
- * Extended API Functions for FeedLink
+ * Extended API Functions for Second Serve
  * Adds additional API methods to the existing APIUtils
  */
 

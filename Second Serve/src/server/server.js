@@ -1,3 +1,6 @@
+// Load environment variables
+require('dotenv').config();
+
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -23,7 +26,7 @@ app.use(express.static(frontendPath));
 app.get("/health", (req, res) => {
   res.json({
     status: "OK",
-    message: "FeedLink backend is running",
+    message: "Second Serve backend is running",
   });
 });
 
@@ -49,7 +52,7 @@ module.exports = app;
 if (require.main === module) {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
-    console.log(`🚀 FeedLink Backend running on http://localhost:${PORT}`);
+    console.log(`🚀 Second Serve Backend running on http://localhost:${PORT}`);
     console.log(`📍 Frontend available at http://localhost:${PORT}`);
   });
 }

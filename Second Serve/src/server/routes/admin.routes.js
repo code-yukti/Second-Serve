@@ -4,6 +4,36 @@ const auth = require("../middleware/auth.middleware");
 
 const router = express.Router();
 
+// Admin Login - Secure authentication endpoint
+router.post("/login", (req, res) => {
+  const { username, secretKey } = req.body;
+
+  if (!username || !secretKey) {
+    return res.status(400).json({ 
+      success: false, 
+      message: "Username and secret key are required" 
+    });
+  }
+
+  // Verify against environment variables
+  const adminUsername = process.env.ADMIN_USERNAME || 'secondserveAdmin294';
+  const adminSecretKey = process.env.ADMIN_SECRET_KEY || 'arunabha@294';
+
+  if (username === adminUsername && secretKey === adminSecretKey) {
+    console.log(`✅ Admin logged in successfully: ${username}`);
+    return res.json({ 
+      success: true, 
+      message: "Authentication successful" 
+    });
+  } else {
+    console.log(`❌ Failed admin login attempt: ${username}`);
+    return res.status(401).json({ 
+      success: false, 
+      message: "Invalid credentials" 
+    });
+  }
+});
+
 // Get all users
 router.get("/users", (req, res) => {
   db.all("SELECT id, fullName, email, role, donorType, city, phone, status, created_at FROM users ORDER BY id", [], (err, rows) => {

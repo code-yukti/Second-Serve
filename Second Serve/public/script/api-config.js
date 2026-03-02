@@ -1,5 +1,5 @@
 /**
- * FeedLink API Configuration
+ * Second Serve API Configuration
  * Central configuration for all API endpoints and settings
  */
 
@@ -74,8 +74,8 @@ const API_CONFIG = {
     },
     
     // Token storage key
-    TOKEN_KEY: 'feedlink_auth_token',
-    USER_KEY: 'feedlink_user_data',
+    TOKEN_KEY: 'secondserve_auth_token',
+    USER_KEY: 'secondserve_user_data',
     
     // Request timeout (ms)
     TIMEOUT: 10000,

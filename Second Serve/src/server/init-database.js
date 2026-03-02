@@ -1,6 +1,6 @@
 /**
  * Database Initialization Script
- * Creates tables and inserts test data for FEEDLINK
+ * Creates tables and inserts test data for Second Serve
  */
 
 const sqlite3 = require("sqlite3").verbose();
@@ -8,7 +8,7 @@ const bcrypt = require("bcryptjs");
 
 const db = new sqlite3.Database("./database.db");
 
-console.log("🗄️  Initializing FEEDLINK Database...\n");
+console.log("🗄️  Initializing Second Serve Database...\n");
 
 db.serialize(async () => {
   
@@ -111,7 +111,7 @@ db.serialize(async () => {
     ["Feed India Mission", "feedindia@ngo.com", password4, "ngo", null, "Chennai", "9876543223", "200 Anna Nagar", "600001"],
     
     // Admin
-    ["Admin User", "admin@feedlink.com", password3, "admin", null, "Delhi", "9876543299", "FeedLink HQ", "110001"]
+    ["Admin User", "admin@secondserve.com", password3, "admin", null, "Delhi", "9876543299", "Second Serve HQ", "110001"]
   ];
 
   const userStmt = db.prepare(`
@@ -177,7 +177,7 @@ db.serialize(async () => {
       console.log("   Role: NGO\n");
       
       console.log("👑 ADMIN ACCOUNT:");
-      console.log("   Email: admin@feedlink.com");
+      console.log("   Email: admin@secondserve.com");
       console.log("   Password: admin123");
       console.log("   Role: Admin\n");
       

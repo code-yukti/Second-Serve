@@ -1,4 +1,4 @@
-✅ **FEEDLINK IS READY TO RUN!**
+✅ **Second Serve IS READY TO RUN!**
 
 ## Current Status
 
@@ -11,11 +11,11 @@
 
 ---
 
-## 🚀 To Start Using FEEDLINK:
+## 🚀 To Start Using Second Serve:
 
 ### Option 1: Quick Start (Copy-Paste)
 ```bash
-cd g:\test\FEEDLINK-main\FEEDLINK-main\src\server
+cd "d:\Second Serve\Second Serve\src\server"
 node server.js
 ```
 
@@ -23,7 +23,7 @@ Then open browser: **http://localhost:5000**
 
 ### Option 2: Step by Step
 1. Open PowerShell/Command Prompt
-2. Navigate to: `g:\test\FEEDLINK-main\FEEDLINK-main\src\server`
+2. Navigate to: `d:\Second Serve\Second Serve\src\server`
 3. Type: `node server.js`
 4. Open browser to: `http://localhost:5000`
 
@@ -40,7 +40,7 @@ Then open browser: **http://localhost:5000**
 - Password: ngo123
 
 **Admin:**
-- Email: admin@feedlink.com
+- Email: admin@secondserve.com
 - Password: admin123
 
 ---
@@ -48,11 +48,11 @@ Then open browser: **http://localhost:5000**
 ## 📂 Project Files Location
 
 ```
-Website Files:      g:\test\FEEDLINK-main\FEEDLINK-main\public\
-Backend Files:      g:\test\FEEDLINK-main\FEEDLINK-main\src\server\
-Database File:      g:\test\FEEDLINK-main\FEEDLINK-main\src\server\database.db
-Documentation:      g:\test\FEEDLINK-main\FEEDLINK-main\docs\
-Admin Dashboard:    g:\test\FEEDLINK-main\ADMIN_DASHBOARD\
+Website Files:      d:\Second Serve\Second Serve\public\
+Backend Files:      d:\Second Serve\Second Serve\src\server\
+Database File:      d:\Second Serve\Second Serve\src\server\database.db
+Documentation:      d:\Second Serve\Second Serve\docs\
+Admin Dashboard:    d:\Second Serve\ADMIN_DASHBOARD\
 ```
 
 ---

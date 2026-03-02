@@ -1,5 +1,5 @@
 /**
- * FeedLink API Utilities
+ * Second Serve API Utilities
  * Helper functions for API calls, error handling, and response management
  */
 

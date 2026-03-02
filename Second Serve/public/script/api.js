@@ -1,5 +1,5 @@
 /**
- * API Utility Module for FeedLink
+ * API Utility Module for Second Serve
  * Handles all API calls to the backend
  */
 

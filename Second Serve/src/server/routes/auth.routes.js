@@ -39,7 +39,7 @@ router.post("/signup", async (req, res) => {
         }
 
         console.log(`✅ New user registered: ${email} (${userType})`);
-        const token = jwt.sign({ id: this.lastID, role: userType }, "FEEDLINK_SECRET");
+        const token = jwt.sign({ id: this.lastID, role: userType }, process.env.JWT_SECRET || "SECOND_SERVE_SECRET");
         res.json({ 
           token,
           user: {
@@ -88,7 +88,7 @@ router.post("/login", (req, res) => {
         }
 
         console.log(`✅ User logged in: ${email} (${userType})`);
-        const token = jwt.sign({ id: user.id, role: user.role }, "FEEDLINK_SECRET");
+        const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET || "SECOND_SERVE_SECRET");
         res.json({ 
           token,
           user: {

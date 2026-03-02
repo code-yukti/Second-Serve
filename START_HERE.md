@@ -1,6 +1,6 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                                                                            ║
-║                    ✅ FEEDLINK IS COMPLETE AND READY!                    ║
+║                    ✅ Second Serve IS COMPLETE AND READY!                    ║
 ║                                                                            ║
 ║                        Food Donation Platform v1.0                         ║
 ║                           Professional Startup Ready                       ║
@@ -27,7 +27,7 @@
   
   Step 2: Copy & Paste This:
   ────────────────────────────────
-  cd g:\test\FEEDLINK-main\FEEDLINK-main\src\server
+  cd "d:\Second Serve\Second Serve\src\server"
   node server.js
   
   Step 3: Open Browser
@@ -47,14 +47,14 @@
     Password: ngo123
 
   ADMIN:
-    Email:    admin@feedlink.com
+    Email:    admin@secondserve.com
     Password: admin123
 
 
 📁 PROJECT STRUCTURE
 ═══════════════════════════════════════════════════════════════════════════════
 
-  FEEDLINK-main/
+  Second Serve/
   ├── public/                    ← All Website Files (HTML, CSS, JS)
   │   ├── index.html            ← Homepage
   │   ├── login.html            ← Login Page

@@ -1,9 +1,9 @@
-# 🚀 How to Run FEEDLINK
+# 🚀 How to Run Second Serve
 
 ## Current Project Structure
 
 ```
-FEEDLINK-main/
+Second Serve/
 ├── public/              ← Website files (HTML, CSS, JS)
 ├── src/
 │   └── server/         ← Backend (Node.js server)
@@ -28,14 +28,14 @@ Your application is properly organized with:
 ## 🎯 Step 1: Start the Server
 
 ```bash
-cd g:\test\FEEDLINK-main\FEEDLINK-main\src\server
+cd "d:\Second Serve\Second Serve\src\server"
 node server.js
 ```
 
 **You should see:**
 ```
 📋 Checking database schema...
-🚀 FeedLink Backend running on http://localhost:5000
+🚀 Second Serve Backend running on http://localhost:5000
 📍 Frontend available at http://localhost:5000
 ✅ Users table ready
 ✅ Food donations table ready
@@ -50,7 +50,7 @@ Go to:
 http://localhost:5000
 ```
 
-You'll see the **FEEDLINK landing page**
+You'll see the **Second Serve landing page**
 
 ## 👤 Step 3: Login and Test
 
@@ -101,11 +101,11 @@ Then:
 1. Keep server running (don't close terminal)
 2. Open this file in browser:
    ```
-   G:\test\FEEDLINK-main\ADMIN_DASHBOARD\admin-login.html
+   G:\test\Second Serve\ADMIN_DASHBOARD\admin-login.html
    ```
 
 3. Login with:
-   - **Username:** feedlink_admin
+   - **Username:** secondserve_admin
    - **Secret Key:** FL@2026$ecur3K3y!
 
 4. View Dashboard Features:
@@ -120,7 +120,7 @@ Then:
 If you want fresh test data:
 
 ```bash
-cd g:\test\FEEDLINK-main\FEEDLINK-main\src\server
+cd "d:\Second Serve\Second Serve\src\server"
 node init-database.js
 ```
 
@@ -139,7 +139,7 @@ This will:
    ```
 3. Restart:
    ```bash
-   cd g:\test\FEEDLINK-main\FEEDLINK-main\src\server
+   cd "d:\Second Serve\Second Serve\src\server"
    node server.js
    ```
 
@@ -164,7 +164,7 @@ This will:
 ### Admin:
 | Name | Email | Password |
 |------|-------|----------|
-| Admin User | admin@feedlink.com | admin123 |
+| Admin User | admin@secondserve.com | admin123 |
 
 ## 📋 Checklist - What Works ✅
 
@@ -290,7 +290,7 @@ Works on:
 Everything is set up and working. Just:
 
 1. **Open Terminal**
-2. **Run:** `cd g:\test\FEEDLINK-main\FEEDLINK-main\src\server && node server.js`
+2. **Run:** `cd "d:\Second Serve\Second Serve\src\server" && node server.js`
 3. **Open Browser:** http://localhost:5000
 4. **Test:** Login and try donating food
 
@@ -303,7 +303,7 @@ Everything is set up and working. Just:
 **Q: Server won't start**
 A: 
 ```bash
-cd g:\test\FEEDLINK-main\FEEDLINK-main\src\server
+cd "d:\Second Serve\Second Serve\src\server"
 npm install
 node server.js
 ```
@@ -315,7 +315,7 @@ A: Make sure server is running in terminal
 A: Make sure you're using correct test accounts
 
 **Q: Can't find database**
-A: It's at: `g:\test\FEEDLINK-main\FEEDLINK-main\src\server\database.db`
+A: It's at: `d:\Second Serve\Second Serve\src\server\database.db`
 
 **Q: Want fresh data**
 A: Run `node init-database.js` in src/server folder

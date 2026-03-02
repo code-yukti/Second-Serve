@@ -1,4 +1,4 @@
-📌 **FEEDLINK - COPY & PASTE TO RUN**
+📌 **Second Serve - COPY & PASTE TO RUN**
 
 ==================================================
 
@@ -8,7 +8,7 @@ Simply copy and paste these commands in order:
 
 Command 1: Navigate to server folder
 ---
-cd g:\test\FEEDLINK-main\FEEDLINK-main\src\server
+cd "d:\Second Serve\Second Serve\src\server"
 
 Command 2: Start the server
 ---

@@ -77,7 +77,7 @@ Requires more code changes (schema changes from SQL to NoSQL)
 ### Step 1: Install PostgreSQL Driver
 
 ```bash
-cd FEEDLINK-main/src/server
+cd "Second Serve/src/server"
 npm install pg
 ```
 
@@ -238,9 +238,9 @@ const row = result.rows[0]; // First row
    ```
 
 ### For Local Development:
-Create `.env` file in `FEEDLINK-main/src/server/`:
+Create `.env` file in `Second Serve/src/server/`:
 ```env
-DATABASE_URL=postgresql://localhost:5432/feedlink_dev
+DATABASE_URL=postgresql://localhost:5432/secondserve_dev
 NODE_ENV=development
 JWT_SECRET=your-local-secret
 ```

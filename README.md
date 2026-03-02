@@ -1,4 +1,4 @@
-# 🍽️ FEEDLINK - Food Donation Platform
+# 🍽️ Second Serve - Food Donation Platform
 
 A modern, production-ready food donation platform connecting donors (restaurants, hotels, individuals) with NGOs to reduce food waste and support communities in need.
 
@@ -25,10 +25,21 @@ A modern, production-ready food donation platform connecting donors (restaurants
 - 💾 Database backups and exports
 - 🖥️ System monitoring
 
+## 🔒 Security Notice
+
+**IMPORTANT:** This application uses environment variables to protect sensitive credentials.
+
+- 🔐 Never commit `.env` files to GitHub
+- 🔑 All API keys and secrets are stored in environment variables
+- 🛡️ Admin credentials are validated server-side
+- 📚 See [docs/ENV_SETUP.md](Second Serve/docs/ENV_SETUP.md) for detailed setup
+- 🚀 See [docs/VERCEL_DEPLOYMENT.md](Second Serve/docs/VERCEL_DEPLOYMENT.md) for deployment
+- 🔒 See [docs/SECURITY.md](Second Serve/docs/SECURITY.md) for security best practices
+
 ## 🏗️ Project Structure
 
 ```
-FEEDLINK-main/
+Second Serve/
 ├── public/                # Frontend (HTML, CSS, JS)
 │   ├── index.html
 │   ├── login.html
@@ -68,14 +79,35 @@ FEEDLINK-main/
 ```bash
 # Clone repository
 git clone <your-repo-url>
-cd FEEDLINK-main
+cd "Second Serve"
 
 # Install dependencies
 npm install
-cd src/server && npm install && cd ../..
+cd "Second Serve/src/server" && npm install && cd ../..
+```
 
-# Initialize database
-cd src/server && node init-database.js && cd ../..
+### Environment Setup (Important!)
+```bash
+# Navigate to server directory
+cd "Second Serve/src/server"
+
+# Copy environment template
+copy .env.example .env    # Windows
+# OR
+cp .env.example .env      # Linux/Mac
+
+# Edit .env file with your credentials
+# Set JWT_SECRET, ADMIN_USERNAME, ADMIN_SECRET_KEY
+
+cd ../..
+```
+
+### Initialize Database
+```bash
+# Create database and seed with test data
+cd "Second Serve/src/server"
+npm run init-db
+cd ../..
 ```
 
 ### Running
@@ -92,7 +124,7 @@ Then open: **http://localhost:5000**
 |------|-------|----------|
 | Donor | rajesh@example.com | donor123 |
 | NGO | foodforall@ngo.com | ngo123 |
-| Admin | admin@feedlink.com | admin123 |
+| Admin | admin@secondserve.com | admin123 |
 
 ## 🛠️ Technology Stack
 
@@ -155,7 +187,7 @@ A professional admin interface for database management:
 
 **Access:** Open `ADMIN_DASHBOARD/admin-login.html`  
 **Credentials:**
-- Username: `feedlink_admin`
+- Username: `secondserve_admin`
 - Secret Key: `FL@2026$ecur3K3y!`
 
 **Features:**

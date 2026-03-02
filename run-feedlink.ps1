@@ -1,6 +1,6 @@
 <#
-run-feedlink.ps1
-Utility to manage FeedLink backend during development on Windows (PowerShell)
+run-second-serve.ps1 (formerly run-feedlink.ps1)
+Utility to manage Second Serve backend during development on Windows (PowerShell)
 
 Features:
 - Install dependencies: -Install
@@ -12,13 +12,13 @@ Features:
 
 Usage examples:
 # Install deps, init DB, start server and open browser
-.\\run-feedlink.ps1 -Install -InitDb -Start -Open
+.\run-feedlink.ps1 -Install -InitDb -Start -Open
 
 # Start server in dev mode
-.\\run-feedlink.ps1 -Dev -Open
+.\run-feedlink.ps1 -Dev -Open
 
 # Stop server
-.\\run-feedlink.ps1 -Stop
+.\run-feedlink.ps1 -Stop
 #>
 
 param(
@@ -31,10 +31,10 @@ param(
 )
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$serverDir = Join-Path $scriptDir "FEEDLINK-main\\src\\server"
+$serverDir = Join-Path $scriptDir "Second Serve\\src\\server"
 $portUrl = "http://localhost:5000"
 
-function Write-Info($m){ Write-Host "[run-feedlink] $m" -ForegroundColor Cyan }
+function Write-Info($m){ Write-Host "[run-second-serve] $m" -ForegroundColor Cyan }
 
 if ($Stop) {
     Write-Info "Stopping Node processes..."

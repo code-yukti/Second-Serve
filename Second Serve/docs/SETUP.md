@@ -12,7 +12,7 @@
 ### 1. Clone the Repository
 ```bash
 git clone <your-repo-url>
-cd FEEDLINK-main
+cd "Second Serve"
 ```
 
 ### 2. Install Dependencies
@@ -47,7 +47,7 @@ node server.js
 You should see:
 ```
 📋 Checking database schema...
-🚀 FeedLink Backend running on http://localhost:5000
+🚀 Second Serve Backend running on http://localhost:5000
 📍 Frontend available at http://localhost:5000
 ✅ Users table ready
 ✅ Food donations table ready
@@ -62,7 +62,7 @@ http://localhost:5000
 ## Project Structure
 
 ```
-FEEDLINK-main/
+Second Serve/
 ├── public/                    # Frontend static files
 │   ├── index.html            # Landing page
 │   ├── login.html            # User login
@@ -162,7 +162,7 @@ Password: ngo123
 
 ### Admin
 ```
-Email: admin@feedlink.com
+Email: admin@secondserve.com
 Password: admin123
 ```
 
@@ -172,7 +172,7 @@ Password: admin123
 1. Ensure backend is running
 2. Open `ADMIN_DASHBOARD/admin-login.html` in browser
 3. Login credentials:
-   - Username: `feedlink_admin`
+   - Username: `secondserve_admin`
    - Secret Key: `FL@2026$ecur3K3y!`
 
 ### Features
@@ -248,7 +248,7 @@ sudo apt-get install -y nodejs
 
 # Clone repo and start
 git clone <repo>
-cd FEEDLINK-main/src/server
+cd "Second Serve/src/server"
 npm install
 node server.js
 ```
@@ -266,8 +266,8 @@ CMD ["node", "src/server/server.js"]
 
 Build and run:
 ```bash
-docker build -t feedlink .
-docker run -p 5000:5000 feedlink
+docker build -t secondserve .
+docker run -p 5000:5000 secondserve
 ```
 
 ## Troubleshooting

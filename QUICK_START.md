@@ -4,7 +4,7 @@
 
 ### 1. Start the Backend Server
 ```bash
-cd FEEDLINK-main/Backend
+cd "Second Serve/src/server"
 node server.js
 ```
 
@@ -32,18 +32,18 @@ http://localhost:5000
 
 ### 1. Make Sure Backend is Running
 ```bash
-cd FEEDLINK-main/Backend
+cd "Second Serve/src/server"
 node server.js
 ```
 
 ### 2. Open Admin Dashboard
 Open this file in your browser:
 ```
-FEEDLINK-main/ADMIN_DASHBOARD/admin-login.html
+Second Serve/ADMIN_DASHBOARD/admin-login.html
 ```
 
 ### 3. Admin Credentials
-- **Username:** `feedlink_admin`
+- **Username:** `secondserve_admin`
 - **Secret Key:** `FL@2026$ecur3K3y!`
 
 ### 4. Dashboard Features
@@ -62,7 +62,7 @@ FEEDLINK-main/ADMIN_DASHBOARD/admin-login.html
 ```bash
 git init
 git add .
-git commit -m "Initial commit - FEEDLINK food donation platform"
+git commit -m "Initial commit - Second Serve food donation platform"
 git remote add origin <your-repo-url>
 git push -u origin main
 ```
@@ -82,7 +82,7 @@ The `.gitignore` file ensures these won't be pushed!
 
 If you want fresh test data:
 ```bash
-cd FEEDLINK-main/Backend
+cd "Second Serve/src/server"
 node init-database.js
 ```
 
@@ -96,7 +96,7 @@ This creates:
 
 **Server won't start?**
 ```bash
-cd FEEDLINK-main/Backend
+cd "Second Serve/src/server"
 npm install
 node server.js
 ```
@@ -115,7 +115,7 @@ node init-database.js
 ## File Structure Overview
 
 ```
-FEEDLINK-main/
+Second Serve/
 ├── index.html, login.html, signup.html, donate.html
 ├── Backend/
 │   ├── server.js (START HERE)
@@ -136,17 +136,17 @@ FEEDLINK-main/
 
 **Install:**
 ```bash
-cd FEEDLINK-main/Backend && npm install
+cd "Second Serve/src/server" && npm install
 ```
 
 **Initialize DB:**
 ```bash
-cd FEEDLINK-main/Backend && node init-database.js
+cd "Second Serve/src/server" && node init-database.js
 ```
 
 **Run Server:**
 ```bash
-cd FEEDLINK-main/Backend && node server.js
+cd "Second Serve/src/server" && node server.js
 ```
 
 **Check Database:**
