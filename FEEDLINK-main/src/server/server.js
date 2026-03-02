@@ -42,7 +42,14 @@ app.use((req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
 
-app.listen(5000, () => {
-  console.log("🚀 FeedLink Backend running on http://localhost:5000");
-  console.log("📍 Frontend available at http://localhost:5000");
-});
+// Export for Vercel serverless
+module.exports = app;
+
+// Start server only in local development
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`🚀 FeedLink Backend running on http://localhost:${PORT}`);
+    console.log(`📍 Frontend available at http://localhost:${PORT}`);
+  });
+}

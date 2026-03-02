@@ -83,31 +83,82 @@ function updateAuthUI() {
     if (!loginBtn) return;
 
     if (authToken && userName) {
-        // Logged in UI
+        // User is logged in - show user name and logout
         loginBtn.innerHTML = `
             <i class="fas fa-user"></i> ${userName}
+            <i class="fas fa-caret-down" style="margin-left: 5px;"></i>
         `;
+        loginBtn.style.position = 'relative';
+        
+        // Create dropdown menu if it doesn't exist
+        let dropdown = loginBtn.nextElementSibling;
+        if (!dropdown || !dropdown.classList.contains('user-dropdown')) {
+            dropdown = document.createElement('div');
+            dropdown.className = 'user-dropdown';
+            dropdown.innerHTML = `
+                <a href="${userType === 'donor' ? 'donor-dashboard.html' : userType === 'ngo' ? 'ngo-dashboard.html' : 'admin-panel.html'}">
+                    <i class="fas fa-dashboard"></i> Dashboard
+                </a>
+                ${userType === 'donor' ? '<a href="donate.html"><i class="fas fa-hand-holding-heart"></i> Donate Food</a>' : ''}
+                ${userType === 'ngo' ? '<a href="find-food.html"><i class="fas fa-search"></i> Find Food</a>' : ''}
+                ${userType === 'admin' ? '<a href="database-dashboard.html"><i class="fas fa-database"></i> Database</a>' : ''}
+                <a href="#" onclick="handleLogout(event)"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            `;
+            dropdown.style.cssText = `
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: white;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                min-width: 200px;
+                display: none;
+                z-index: 1000;
+                margin-top: 10px;
+            `;
+            dropdown.querySelectorAll('a').forEach(link => {
+                link.style.cssText = `
+                    display: block;
+                    padding: 12px 20px;
+                    color: #333;
+                    text-decoration: none;
+                    transition: background 0.3s;
+                    border-bottom: 1px solid #eee;
+                `;
+                link.onmouseover = () => link.style.background = '#f5f5f5';
+                link.onmouseout = () => link.style.background = 'white';
+            });
+            loginBtn.parentNode.style.position = 'relative';
+            loginBtn.parentNode.appendChild(dropdown);
+        }
 
-        // REMOVE dropdown behavior
+        // Toggle dropdown on click
         loginBtn.onclick = (e) => {
             e.preventDefault();
-
-            const routes = {
-                donor: 'donor-dashboard.html',
-                ngo: 'ngo-dashboard.html'
-            };
-
-            window.location.href = routes[userType] || 'login.html';
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         };
 
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!loginBtn.contains(e.target) && dropdown) {
+                dropdown.style.display = 'none';
+            }
+        });
+
     } else {
-        // Not logged in
+        // User is not logged in - show login button
         loginBtn.innerHTML = 'Login / Sign Up';
         loginBtn.onclick = null;
         loginBtn.href = 'login.html';
+        
+        // Remove dropdown if exists
+        const dropdown = loginBtn.nextElementSibling;
+        if (dropdown && dropdown.classList.contains('user-dropdown')) {
+            dropdown.remove();
+        }
     }
 }
-
 
 /**
  * Handle logout
@@ -125,26 +176,3 @@ function handleLogout(event) {
         window.location.href = 'index.html';
     }
 }
-// chat-bot
-function openChat() {
-  window.open(
-    "chat.html",           // your chatbot file
-    "FeedLinkAI",
-    "HeartLinkAI",
-
-  );
-}
-const toggle = document.getElementById("chat-toggle");
-const overlay = document.getElementById("chat-overlay");
-
-toggle.onclick = () => {
-  overlay.style.display =
-    overlay.style.display === "block" ? "none" : "block";
-};
-window.addEventListener("message", function(event) {
-  if (event.data === "closeFeedlinkChat") {
-    overlay.style.display = "none";
-  }
-});
-
-

@@ -78,12 +78,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('✅ Login successful, token stored');
                     APIUtils.showSuccessMessage('Login successful! Redirecting...');
                     
-                    // Redirect based on user type (immediate)
-                    if (userType === 'admin') {
-                        window.location.href = 'admin-panel.html';
-                    } else {
-                        window.location.href = 'index.html';
-                    }
+                    // Redirect based on user type
+                    setTimeout(() => {
+                        if (userType === 'admin') {
+                            window.location.href = 'admin-panel.html';
+                        } else if (userType === 'donor') {
+                            window.location.href = 'index.html';
+                        } else if (userType === 'ngo') {
+                            window.location.href = 'index.html';
+                        }
+                    }, 1000);
                 } else {
                     APIUtils.showErrorMessage(result.message || 'Login failed. Please check your credentials.');
                     submitBtn.innerHTML = originalText;

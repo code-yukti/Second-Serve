@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FeedLink | Recover Food, Feed Lives</title>
+    <title>Second Serve | Recover Food, Feed Lives</title>
     <link rel="stylesheet" href="style/all.css">
     <link rel="stylesheet" href="style/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,60 +16,107 @@
         <div class="logo">
             <a href="#" class="logo">
 
-    <svg
-      viewBox="0 0 600 200"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="200" height="50" viewBox="0 0 200 50">
 
-      <!-- FEED -->
-      <text
-        x="40"
-        y="130"
-        font-size="100"
-        font-family="Arial, sans-serif"
-        font-weight="700"
-        fill="#ffa000"
-      >
-        Feed
-      </text>
+  <defs>
+    <!-- 3D Plate Gradients -->
+    <radialGradient id="plateOuter" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#f2f2f2"/>
+      <stop offset="100%" stop-color="#d9d9d9"/>
+    </radialGradient>
 
-      <!-- LINK -->
-      <text
-        x="280"
-        y="130"
-        font-size="100"
-        font-family="Arial, sans-serif"
-        font-weight="700"
-        fill="white"
-      >
-       Link
-      </text>
+    <radialGradient id="plateInner" cx="50%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#ececec"/>
+    </radialGradient>
 
-      <!-- CURVE (d → n) -->
-      <path
-    id="foodPath"
-    d="M 220 140
-       C 280 190, 360 190, 420 150
-       S 500 120, 540 140"
-    fill="none"
-    stroke="#ffa000"
-    stroke-width="6"
-    stroke-dasharray="10 14"
-    stroke-linecap="round"
-  />
+    <!-- Soft shadow -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5"
+                    flood-color="#000" flood-opacity="0.3"/>
+    </filter>
 
-      <polygon
-    points="0,-7 16,0 0,7"
-    fill="white">
-    <animateMotion
-      dur="2.5s"
-      repeatCount="indefinite"
-      rotate="auto">
-      <mpath href="#foodPath"/>
-    </animateMotion>
-  </polygon> 
-  </svg>
+    <!-- Arrow -->
+    <marker id="arrow"
+            markerWidth="5"
+            markerHeight="5"
+            refX="4"
+            refY="2.5"
+            orient="auto">
+      <path d="M0,0 L5,2.5 L0,5 Z" fill="#ffffff"/>
+    </marker>
+  </defs>
 
+  <!-- LEFT TEXT (closer) -->
+  <text x="78" y="32"
+        text-anchor="end"
+        font-family="Poppins, sans-serif"
+        font-weight="800"
+        font-size="18"
+        fill="#ffb300">
+    Second
+  </text>
+
+  <!-- CENTER -->
+  <g transform="translate(100,25)">
+
+    <!-- Rotating Arrows -->
+    <g>
+      <path d="M 0 -20 A 20 20 0 0 1 20 0"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="1.3"
+            marker-end="url(#arrow)"/>
+
+      <path d="M 0 20 A 20 20 0 0 1 -20 0"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="1.3"
+            marker-end="url(#arrow)"/>
+
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0"
+        to="360"
+        dur="6s"
+        repeatCount="indefinite"/>
+    </g>
+
+    <!-- Plate Base -->
+    <circle cx="0" cy="0" r="11"
+            fill="url(#plateOuter)"
+            stroke="#cfcfcf"
+            stroke-width="0.8"
+            filter="url(#shadow)"/>
+
+    <!-- Rim -->
+    <circle cx="0" cy="0" r="9"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="1.5"
+            opacity="0.8"/>
+
+    <!-- Inner Bowl -->
+    <circle cx="0" cy="0" r="6.5"
+            fill="url(#plateInner)"
+            stroke="#e0e0e0"
+            stroke-width="0.5"/>
+
+  </g>
+
+  <!-- RIGHT TEXT (closer) -->
+  <text x="122" y="32"
+        text-anchor="start"
+        font-family="Poppins, sans-serif"
+        font-weight="800"
+        font-size="18"
+        fill="#ffffff">
+    Serve
+  </text>
+
+</svg>
   </a>
         </div>
         <nav class="nav-menu">
@@ -77,7 +124,7 @@
             <a href="#food-listings" class="nav-link">Find Food</a>
             <a href="donate.html" class="nav-link">Donate Food</a>
             <a href="find-ngo.html" class="nav-link">Find NGOs</a>
-            <a href="heart.html" class="nav-link">Heart</a> 
+            <a href="heart.html" class="nav-link">Smile</a> 
             <a href="#about" class="nav-link">About</a>
             <a href="login.html" class="nav-link login-btn">Login / Sign Up</a>
             <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle Dark Mode">
@@ -86,14 +133,6 @@
         </nav>
     </div>
 </header>
-<!-- Chat Toggle -->
-<button id="chat-toggle"><i class="fas fa-comments"></i> Chat</button>
-
-<!-- Overlay -->
-<div id="chat-overlay">
-  <iframe src="chat.html"></iframe>
-</div>
-
 
 <!-- Hero Section -->
 <section class="hero" id="home">
@@ -195,6 +234,7 @@
         </div>
     </div>
 </section>
+
 <!-- Testimonials Section -->
 <section class="testimonials">
     <div class="section-container">
@@ -209,7 +249,7 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                 </div>
-                <p class="testimonial-text">"FeedLink helped us reduce food waste significantly. The process is seamless and the NGOs are so appreciative!"</p>
+                <p class="testimonial-text">"Second Serve helped us reduce food waste significantly. The process is seamless and the NGOs are so appreciative!"</p>
                 <p class="testimonial-author">- XXX XXX, Restaurant Owner</p>
             </div>
             <div class="testimonial-card">
@@ -240,10 +280,10 @@
 <!-- About Section -->
 <section class="about" id="about">
     <div class="section-container">
-        <h2>About FeedLink</h2>
+        <h2>About Second Serve</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>FeedLink is a community-driven platform dedicated to bridging the gap between food donors and NGOs working to eliminate hunger. We believe that no food should go to waste when communities need it most.</p>
+                <p>Second Serve is a community-driven platform dedicated to bridging the gap between food donors and NGOs working to eliminate hunger. We believe that no food should go to waste when communities need it most.</p>
                 <p>Our mission is to create a sustainable ecosystem where surplus food from restaurants, households, and food businesses reaches those in need, reducing food waste and fighting malnutrition across the country.</p>
                 <div class="about-values">
                     <div class="value">
@@ -278,7 +318,7 @@
     <div class="section-container">
         <div class="footer-content">
             <div class="footer-section">
-                <h4>FeedLink</h4>
+                <h4>Second Serve</h4>
                 <p>Reducing food waste, feeding hope.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook"></i></a>
@@ -315,7 +355,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 FeedLink | All Rights Reserved | Recovering Food, Feeding Hope</p>
+            <p>&copy; 2026 Second Serve | All Rights Reserved | Recovering Food, Feeding Hope</p>
         </div>
     </div>
 </footer>

@@ -92,7 +92,7 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    background: #f40e31;
+    background: #ff6b81;
     color: white;
     padding: 15px 25px;
     border-radius: 10px;
@@ -213,74 +213,3 @@
         max-width: 300px;
     }
 }
-
-/* Heart Link page overrides (high specificity to override global variables) */
-.heart-page .navbar {
-    background: linear-gradient(135deg, #ff6b81 0%, #ff94a8 100%) !important;
-    box-shadow: 0 6px 18px rgba(255, 107, 129, 0.18);
-}
-
-.heart-page .nav-link,
-.heart-page .nav-menu .dark-mode-toggle,
-.heart-page .nav-menu i {
-    color: white !important;
-}
-
-.heart-page .login-btn {
-    background: #ff6b81 !important;
-    color: white !important;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: 600;
-}
-
-.heart-page .login-btn:hover {
-    background: #e5506b !important;
-    color: white !important;
-}
-
-/* Ensure other accent controls on this page use the heart palette */
-.heart-page .primary-btn,
-.heart-page .donation-card button,
-.heart-page .popup-message,
-.heart-page .stat-box h3 {
-    background: transparent;
-    color: #ff6b81;
-}
-
-.heart-page .donation-card button {
-    background-color: #ff6b81;
-    color: white;
-}
-
-
-/* Heart Link footer overrides */
-.heart-page .footer {
-    background: linear-gradient(135deg, #ff6b81 0%, #ff94a8 100%) !important;
-    color: white !important;
-}
-
-.heart-page .footer a {
-    color: rgba(255,255,255,0.95) !important;
-    text-decoration: none;
-}
-
-.heart-page .footer a:hover {
-    color: #fff3f6 !important;
-}
-
-.heart-page .footer .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.15) !important;
-    padding-top: 20px;
-    color: rgba(255,255,255,0.95) !important;
-}
-/* Chat toggle color specific to Heart Link page */
-.heart-page #chat-toggle {
-    background: #f40e31 !important;
-    color: #ffffff !important;
-}
-
-.heart-page #chat-toggle:hover {
-    background: #d10b27 !important;
-}
-

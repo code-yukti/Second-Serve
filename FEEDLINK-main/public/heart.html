@@ -3,94 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find NGOs | FeedLink</title>
+    <title>Smile | Second Serve</title>
     <link rel="stylesheet" href="style/all.css">
     <link rel="stylesheet" href="style/heart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="heart-page">
+<body>
 
-<header class="navbar">
+<header class="navbar" 
+    style="background: linear-gradient(90deg, #ff6b81, #ff4757);">
     <div class="navbar-container">
         <div class="logo">
             <a href="#" class="logo">
 
-     <svg
-      viewBox="0 0 600 200"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+<svg width="220" height="55" viewBox="0 0 220 55">
 
-      <!-- FEED -->
-      <text
-        x="20"
-        y="130"
-        font-size="100"
-        font-family="Arial, sans-serif"
-        font-weight="700"
-        fill="#f40e31"
-      >
-        Heart
-      </text>
+  <defs>
+    <!-- Arrow -->
+    <marker id="arrow"
+            markerWidth="5"
+            markerHeight="5"
+            refX="4"
+            refY="2.5"
+            orient="auto">
+      <path d="M0,0 L5,2.5 L0,5 Z" fill="#ffffff"/>
+    </marker>
+  </defs>
 
-      <!-- LINK -->
-      <text
-        x="280"
-        y="130"
-        font-size="100"
-        font-family="Arial, sans-serif"
-        font-weight="700"
-        fill="white"
-      >
-       Link
-      </text>
+  <!-- LEFT TEXT -->
+  <text x="85" y="35"
+        text-anchor="end"
+        font-family="Poppins, sans-serif"
+        font-weight="800"
+        font-size="20"
+        fill="rgb(225, 6, 0)">
+    Second
+  </text>
 
-      <!-- CURVE (d → n) -->
-      <path
-    id="foodPath"
-    d="M 220 140
-       C 280 190, 360 190, 420 150
-       S 500 120, 540 140"
-    fill="none"
-    stroke="#f40e31"
-    stroke-width="6"
-    stroke-dasharray="10 14"
-    stroke-linecap="round"
-  />
+  <!-- CENTER GROUP -->
+  <g transform="translate(110,28)">
 
-      <polygon
-    points="0,-7 16,0 0,7"
-    fill="white">
-    <animateMotion
-      dur="2.5s"
-      repeatCount="indefinite"
-      rotate="auto">
-      <mpath href="#foodPath"/>
-    </animateMotion>
-  </polygon> 
-  </svg>
+    <!-- Rotating Circular Arrows -->
+    <g>
+      <path d="M 0 -18 A 18 18 0 0 1 18 0"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="1.4"
+            marker-end="url(#arrow)"/>
+
+      <path d="M 0 18 A 18 18 0 0 1 -18 0"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="1.4"
+            marker-end="url(#arrow)"/>
+
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0"
+        to="360"
+        dur="6s"
+        repeatCount="indefinite"/>
+    </g>
+
+    <!-- Smaller Red Heart -->
+    <path d="M0 -6
+             C -7 -13, -16 -4, 0 10
+             C 16 -4, 7 -13, 0 -6 Z"
+          fill="#e10600"/>
+  </g>
+
+  <!-- RIGHT TEXT -->
+  <text x="135" y="35"
+        text-anchor="start"
+        font-family="Poppins, sans-serif"
+        font-weight="800"
+        font-size="20"
+        fill="#ffffff">
+    Smile
+  </text>
+
+</svg>
   </a>
+    <div style="width: max-content;">
+            <h2>coming soon.....</h2>
         </div>
-        <nav class="nav-menu">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="donate.html" class="nav-link">Donate Food</a>
-            <a href="login.html" class="nav-link login-btn">Login</a>
-            <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle Dark Mode">
-                <i class="fas fa-moon"></i>
-            </button>
-        </nav>
-    </div>
-    <!-- Chat Toggle -->
-<button id="chat-toggle"><i class="fas fa-comments"></i> Chat</button>
-
-<!-- Overlay -->
-<div id="chat-overlay">
-    <iframe src="chat.html?theme=heart"></iframe>
-</div>
+        
     </header>
     <section class="about-heartlink">
-    <h2>Why Heart Link?</h2>
+    <h2>Why second serve?</h2>
     <p>
-        Heart Link extends FeedLink’s mission beyond food. 
+        Second serve extends Second Serve’s mission beyond food. 
         Many families need more than meals — they need warm clothes, 
         educational books, and joyful toys for children.
     </p>
@@ -100,21 +103,8 @@
     <div class="stat-box">
         <h3 id="clothes-count"></h3>
         <div class="loader" id="clothes-loader"></div>
-        <p>Clothes Donated</p>
+        <p></p>
     </div>
-
-    <div class="stat-box">
-        <h3 id="books-count"></h3>
-        <div class="loader" id="books-loader"></div>
-        <p>Books Shared</p>
-    </div>
-
-    <div class="stat-box">
-        <h3 id="toys-count"></h3>
-        <div class="loader" id="toys-loader"></div>
-        <p>Toys Delivered</p>
-    </div>
-
 </div>
 
 
@@ -124,38 +114,20 @@
     <!--  head-->
     <main class="main-content">
         <div class="heart-h1">
-            <h1>More To Donate</h1>
+            <h1></h1>
         </div>      
     
     <!-- Donation Sections -->
-    <section class="donation-container">
 
-        <div class="donation-card">
-            <h2><i class="fas fa-shirt"></i> Clothes Donation</h2>
-            <p>Donate gently used clothes to help families stay warm and confident.</p>
-           <button class="donate-btn" data-type="Clothes">Donate Clothes</button>
-        </div>
-
-        <div class="donation-card">
-            <h2><i class="fas fa-book"></i> Books Donation</h2>
-            <p>Share knowledge and education by donating books to children and students.</p>
-            <button class="donate-btn" data-type="Books">Donate Books</button>
-        </div>
-
-        <div class="donation-card">
-            <h2><i class="fas fa-puzzle-piece"></i> Toys Donation</h2>
-            <p>Bring smiles to children by donating toys that can create joyful memories.</p>
-            <button class="donate-btn" data-type="Toys">Donate Toys</button>
-        </div>
-
-    </section>
+      
+        
 
 
     <!-- Footer -->
-<footer class="footer">
+<footer class="footer"style="background: linear-gradient(90deg, #ff6b81, #ff4757);">
     <div class="section-container">
         <div class="footer-bottom">
-            <p>&copy; 2026 FeedLink | All Rights Reserved | Recovering Food, Feeding Hope</p>
+            <p>&copy; 2026 Second Serve | All Rights Reserved | Recovering Food, Feeding Hope</p>
         </div>
     </div>
 </footer>

@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "FEEDLINK-main/src/server/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "FEEDLINK-main/src/server/server.js"
+    },
+    {
+      "src": "/health",
+      "dest": "FEEDLINK-main/src/server/server.js"
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "FEEDLINK-main/src/server/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "FEEDLINK-main/public/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

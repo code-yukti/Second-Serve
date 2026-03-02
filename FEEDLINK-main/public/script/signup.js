@@ -13,10 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const donorTypeSelect = document.getElementById('donorType');
     const signupForm = document.getElementById('signupForm');
     const submitBtn = document.querySelector('.signup-submit');
-    const useLocationBtn = document.getElementById('useLocationBtn');
-    const latitudeInput = document.getElementById('latitude');
-    const longitudeInput = document.getElementById('longitude');
-    const locationStatus = document.getElementById('locationStatus');
 
     function setupPasswordToggle(input, button) {
         if (!input || !button) return;
@@ -99,62 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         userTypeSelect.addEventListener('change', toggleDonorField);
         toggleDonorField(); // Initialize on page load
-    }
-
-    // Handle "Use my current location" button
-    async function handleUseLocation() {
-        if (!useLocationBtn) return;
-        if (!navigator.geolocation) {
-            APIUtils.showErrorMessage('Geolocation is not supported by your browser.');
-            return;
-        }
-
-        useLocationBtn.disabled = true;
-        const icon = useLocationBtn.querySelector('i');
-        const originalIconClass = icon ? icon.className : '';
-        if (icon) icon.className = 'fas fa-spinner fa-spin';
-        if (locationStatus) locationStatus.textContent = 'Locating...';
-
-        navigator.geolocation.getCurrentPosition(async (position) => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-
-            if (latitudeInput) latitudeInput.value = lat;
-            if (longitudeInput) longitudeInput.value = lon;
-
-            // Try reverse geocoding via Nominatim
-            try {
-                const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
-                const resp = await fetch(url, { headers: { 'Accept': 'application/json' } });
-                if (resp.ok) {
-                    const data = await resp.json();
-                    const addr = data.address || {};
-                    const place = addr.city || addr.town || addr.village || addr.county || addr.state || data.display_name || '';
-                    if (cityInput) cityInput.value = place;
-                    if (locationStatus) locationStatus.textContent = 'Location detected';
-                } else {
-                    if (locationStatus) locationStatus.textContent = '';
-                    APIUtils.showErrorMessage('Unable to determine address from your location.');
-                }
-            } catch (err) {
-                console.error('Reverse geocode error', err);
-                APIUtils.showErrorMessage('Failed to fetch location details.');
-            } finally {
-                if (icon) icon.className = originalIconClass;
-                useLocationBtn.disabled = false;
-            }
-
-        }, (err) => {
-            console.error('Geolocation error', err);
-            APIUtils.showErrorMessage('Unable to get your location. Please allow location access and try again.');
-            if (icon) icon.className = originalIconClass;
-            useLocationBtn.disabled = false;
-            if (locationStatus) locationStatus.textContent = '';
-        }, { timeout: 10000 });
-    }
-
-    if (useLocationBtn) {
-        useLocationBtn.addEventListener('click', handleUseLocation);
     }
 
     // Handle form submission
@@ -247,8 +187,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('✅ Signup successful, token stored');
                     APIUtils.showSuccessMessage('Account created successfully! Redirecting...');
                     
-                    // Redirect to homepage (immediate)
-                    window.location.href = 'index.html';
+                    // Redirect to homepage
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
                 } else {
                     APIUtils.showErrorMessage(result.message || 'Failed to create account. Please try again.');
                     submitBtn.innerHTML = originalText;
