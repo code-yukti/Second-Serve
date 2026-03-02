@@ -1,5 +1,5 @@
 /**
- * FeedLink Environment Configuration
+ * Second Serve Environment Configuration
  * 
  * INSTRUCTIONS:
  * 1. Copy this file as 'env-config.js' in the same directory
@@ -33,8 +33,8 @@ const ENV_CONFIG = {
     
     // Email configuration
     EMAIL: {
-        SUPPORT: 'support@feedlink.com',
-        FROM: 'noreply@feedlink.com'
+        SUPPORT: 'support@secondserve.com',
+        FROM: 'noreply@secondserve.com'
     },
     
     // Map configuration

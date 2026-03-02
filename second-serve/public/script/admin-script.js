@@ -674,7 +674,7 @@ function exportData() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `feedlink-${section}-${Date.now()}.json`;
+    a.download = `secondserve-${section}-${Date.now()}.json`;
     a.click();
     URL.revokeObjectURL(url);
 }

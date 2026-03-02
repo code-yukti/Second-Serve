@@ -12,13 +12,13 @@ Features:
 
 Usage examples:
 # Install deps, init DB, start server and open browser
-.\run-feedlink.ps1 -Install -InitDb -Start -Open
+.\run-second-serve.ps1 -Install -InitDb -Start -Open
 
 # Start server in dev mode
-.\run-feedlink.ps1 -Dev -Open
+.\run-second-serve.ps1 -Dev -Open
 
 # Stop server
-.\run-feedlink.ps1 -Stop
+.\run-second-serve.ps1 -Stop
 #>
 
 param(

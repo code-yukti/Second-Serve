@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
   if (!token) return res.status(401).json({ message: "No token" });
 
   try {
-    req.user = jwt.verify(token, "FEEDLINK_SECRET");
+    req.user = jwt.verify(token, "SECOND_SERVE_SECRET");
     next();
   } catch {
     res.status(401).json({ message: "Invalid token" });

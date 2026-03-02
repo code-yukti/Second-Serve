@@ -1,5 +1,5 @@
 /**
- * FeedLink Authentication Manager
+ * Second Serve Authentication Manager
  * Handles authentication checks, redirects, and session management
  */
 

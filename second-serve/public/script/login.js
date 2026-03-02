@@ -1,5 +1,5 @@
 /**
- * FeedLink Login Form Handler
+ * Second Serve Login Form Handler
  * Manages user authentication and login process
  */
 

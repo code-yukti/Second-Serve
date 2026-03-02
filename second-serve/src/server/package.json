@@ -1,7 +1,7 @@
 {
-  "name": "feedlink-backend",
+  "name": "second-serve-backend",
   "version": "1.0.0",
-  "description": "FeedLink Backend API Server",
+  "description": "Second Serve Backend API Server",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,7 +9,7 @@
     "dev": "nodemon server.js"
   },
   "keywords": ["food", "donation", "ngo", "backend"],
-  "author": "FeedLink Team",
+  "author": "Second Serve Team",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
