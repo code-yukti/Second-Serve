@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEEDLINK Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style/admin.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <h2>FEEDLINK</h2>
+            </div>
+            
+            <nav class="menu">
+                <a href="#overview" class="menu-item active" onclick="showSection('overview')">
+                    <i class="fas fa-chart-line"></i> Overview
+                </a>
+                <a href="#users" class="menu-item" onclick="showSection('users')">
+                    <i class="fas fa-users"></i> Users Management
+                </a>
+                <a href="#donations" class="menu-item" onclick="showSection('donations')">
+                    <i class="fas fa-hand-holding-heart"></i> Donations
+                </a>
+                <a href="#analytics" class="menu-item" onclick="showSection('analytics')">
+                    <i class="fas fa-chart-pie"></i> Analytics
+                </a>
+                <a href="#database" class="menu-item" onclick="showSection('database')">
+                    <i class="fas fa-database"></i> Database Direct
+                </a>
+                <a href="#system" class="menu-item" onclick="showSection('system')">
+                    <i class="fas fa-server"></i> System Monitor
+                </a>
+            </nav>
+
+            <div class="admin-info">
+                <i class="fas fa-user-shield"></i>
+                <div>
+                    <div class="admin-name">Database Admin</div>
+                    <div class="admin-role">System Administrator</div>
+                </div>
+            </div>
+
+            <button class="btn-logout" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1 id="sectionTitle">Dashboard Overview</h1>
+                <div class="header-actions">
+                    <button class="btn-refresh" onclick="refreshData()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                    <button class="btn-export" onclick="exportData()">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Overview Section -->
+                <section id="overview-section" class="section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #667eea;">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalUsers">0</h3>
+                                <p>Total Users</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #f093fb;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalDonors">0</h3>
+                                <p>Donors</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #4facfe;">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalNGOs">0</h3>
+                                <p>NGOs</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #43e97b;">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalDonations">0</h3>
+                                <p>Total Donations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <h3>User Growth</h3>
+                            <canvas id="userGrowthChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Donation Status</h3>
+                            <canvas id="donationStatusChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h3>Recent Activity</h3>
+                        <div id="recentActivityList"></div>
+                    </div>
+                </section>
+
+                <!-- Users Section -->
+                <section id="users-section" class="section">
+                    <div class="section-header">
+                        <input type="text" id="userSearch" placeholder="Search users by name, email, or role..." class="search-input">
+                        <button class="btn-filter" onclick="filterUsers()">
+                            <i class="fas fa-filter"></i> Delete All Users
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>City</th>
+                                    <th>Phone</th>
+                                    <th>Joined</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <tr>
+                                    <td colspan="8" class="text-center">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Donations Section -->
+                <section id="donations-section" class="section">
+                    <div class="section-header">
+                        <input type="text" id="donationSearch" placeholder="Search donations..." class="search-input">
+                        <select id="statusFilter" class="filter-select" onchange="loadDonations()">
+                            <option value="">All Status</option>
+                            <option value="available">Available</option>
+                            <option value="claimed">Claimed</option>
+                            <option value="completed">Completed</option>
+                            <option value="expired">Expired</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                        <button class="btn-filter btn-danger" onclick="deleteAllDonations()">
+                            <i class="fas fa-trash"></i> Delete All
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Food Name</th>
+                                    <th>Donor</th>
+                                    <th>Quantity</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="donationsTableBody">
+                                <tr>
+                                    <td colspan="8" class="text-center">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Analytics Section -->
+                <section id="analytics-section" class="section">
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h3>Donations by Category</h3>
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>City-wise Distribution</h3>
+                            <canvas id="cityChart"></canvas>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Monthly Trends</h3>
+                            <canvas id="monthlyTrendChart"></canvas>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>User Role Distribution</h3>
+                            <canvas id="roleChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Database Direct Section -->
+                <section id="database-section" class="section">
+                    <div class="db-tools">
+                        <h3>Direct Database Access</h3>
+                        <div class="query-builder">
+                            <textarea id="sqlQuery" placeholder="Enter SQL Query (SELECT only for safety)..." class="sql-input"></textarea>
+                            <button class="btn-execute" onclick="executeQuery()">
+                                <i class="fas fa-play"></i> Execute Query
+                            </button>
+                        </div>
+                        <div class="query-results" id="queryResults"></div>
+                    </div>
+
+                    <div class="quick-queries">
+                        <h3>Quick Queries</h3>
+                        <button onclick="quickQuery('users')">View All Users</button>
+                        <button onclick="quickQuery('donations')">View All Donations</button>
+                        <button onclick="quickQuery('recent')">Recent Activity (24h)</button>
+                        <button onclick="quickQuery('stats')">Database Statistics</button>
+                    </div>
+                </section>
+
+                <!-- System Monitor Section -->
+                <section id="system-section" class="section">
+                    <div class="system-grid">
+                        <div class="system-card">
+                            <h3><i class="fas fa-database"></i> Database Info</h3>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span>Database Size:</span>
+                                    <strong id="dbSize">Loading...</strong>
+                                </div>
+                                <div class="info-item">
+                                    <span>Total Records:</span>
+                                    <strong id="totalRecords">Loading...</strong>
+                                </div>
+                                <div class="info-item">
+                                    <span>Last Backup:</span>
+                                    <strong id="lastBackup">Never</strong>
+                                </div>
+                            </div>
+                            <button class="btn-action" onclick="backupDatabase()">
+                                <i class="fas fa-save"></i> Backup Database
+                            </button>
+                        </div>
+
+                        <div class="system-card">
+                            <h3><i class="fas fa-chart-area"></i> Server Stats</h3>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span>Server Status:</span>
+                                    <strong class="status-online">● Online</strong>
+                                </div>
+                                <div class="info-item">
+                                    <span>API Endpoint:</span>
+                                    <strong>localhost:5000</strong>
+                                </div>
+                                <div class="info-item">
+                                    <span>Uptime:</span>
+                                    <strong id="serverUptime">--</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="system-card">
+                            <h3><i class="fas fa-clock"></i> Session Info</h3>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span>Login Time:</span>
+                                    <strong id="loginTime">--</strong>
+                                </div>
+                                <div class="info-item">
+                                    <span>Session Duration:</span>
+                                    <strong id="sessionDuration">--</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="system-card">
+                            <h3><i class="fas fa-exclamation-triangle"></i> System Actions</h3>
+                            <div class="action-buttons">
+                                <button class="btn-danger" onclick="clearAllSessions()">
+                                    <i class="fas fa-trash"></i> Clear All User Sessions
+                                </button>
+                                <button class="btn-warning" onclick="resetDatabase()">
+                                    <i class="fas fa-redo"></i> Reset Test Data
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="script/admin-script.js"></script>
+</body>
+</html>

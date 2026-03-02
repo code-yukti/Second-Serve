@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smile | Second Serve</title>
+    <link rel="stylesheet" href="style/all.css">
+    <link rel="stylesheet" href="style/heart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar" 
+    style="background: linear-gradient(90deg, #ff6b81, #ff4757);">
+    <div class="navbar-container">
+        <div class="logo">
+            <a href="#" class="logo">
+
+<svg width="220" height="55" viewBox="0 0 220 55">
+
+  <defs>
+    <!-- Arrow -->
+    <marker id="arrow"
+            markerWidth="5"
+            markerHeight="5"
+            refX="4"
+            refY="2.5"
+            orient="auto">
+      <path d="M0,0 L5,2.5 L0,5 Z" fill="#ffffff"/>
+    </marker>
+  </defs>
+
+  <!-- LEFT TEXT -->
+  <text x="85" y="35"
+        text-anchor="end"
+        font-family="Poppins, sans-serif"
+        font-weight="800"
+        font-size="20"
+        fill="rgb(225, 6, 0)">
+    Second
+  </text>
+
+  <!-- CENTER GROUP -->
+  <g transform="translate(110,28)">
+
+    <!-- Rotating Circular Arrows -->
+    <g>
+      <path d="M 0 -18 A 18 18 0 0 1 18 0"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="1.4"
+            marker-end="url(#arrow)"/>
+
+      <path d="M 0 18 A 18 18 0 0 1 -18 0"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="1.4"
+            marker-end="url(#arrow)"/>
+
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0"
+        to="360"
+        dur="6s"
+        repeatCount="indefinite"/>
+    </g>
+
+    <!-- Smaller Red Heart -->
+    <path d="M0 -6
+             C -7 -13, -16 -4, 0 10
+             C 16 -4, 7 -13, 0 -6 Z"
+          fill="#e10600"/>
+  </g>
+
+  <!-- RIGHT TEXT -->
+  <text x="135" y="35"
+        text-anchor="start"
+        font-family="Poppins, sans-serif"
+        font-weight="800"
+        font-size="20"
+        fill="#ffffff">
+    Smile
+  </text>
+
+</svg>
+  </a>
+    <div style="width: max-content;">
+            <h2>coming soon.....</h2>
+        </div>
+        
+    </header>
+    <section class="about-heartlink">
+    <h2>Why second serve?</h2>
+    <p>
+        Second serve extends Second Serve’s mission beyond food. 
+        Many families need more than meals — they need warm clothes, 
+        educational books, and joyful toys for children.
+    </p>
+
+  <div class="stats">
+
+    <div class="stat-box">
+        <h3 id="clothes-count"></h3>
+        <div class="loader" id="clothes-loader"></div>
+        <p></p>
+    </div>
+</div>
+
+
+</section>
+
+
+    <!--  head-->
+    <main class="main-content">
+        <div class="heart-h1">
+            <h1></h1>
+        </div>      
+    
+    <!-- Donation Sections -->
+
+      
+        
+
+
+    <!-- Footer -->
+<footer class="footer"style="background: linear-gradient(90deg, #ff6b81, #ff4757);">
+    <div class="section-container">
+        <div class="footer-bottom">
+            <p>&copy; 2026 Second Serve | All Rights Reserved | Recovering Food, Feeding Hope</p>
+        </div>
+    </div>
+</footer>
+
+
+
+<script src="script/api-config.js"></script>
+<script src="script/api-utils.js"></script>
+<script src="script/api.js"></script>
+<script src="script/find-ngo-handler.js"></script>
+<script src="script/all.js"></script>
+<script src="script/heart.js"></script>
+</body>
+</html>
