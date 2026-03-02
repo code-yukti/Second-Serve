@@ -2,26 +2,26 @@
   "version": 2,
   "builds": [
     {
-      "src": "Second Serve/src/server/server.js",
+      "src": "second-serve/src/server/server.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "Second Serve/src/server/server.js"
+      "dest": "second-serve/src/server/server.js"
     },
     {
       "src": "/health",
-      "dest": "Second Serve/src/server/server.js"
+      "dest": "second-serve/src/server/server.js"
     },
     {
       "src": "/uploads/(.*)",
-      "dest": "Second Serve/src/server/server.js"
+      "dest": "second-serve/src/server/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "Second Serve/public/$1"
+      "dest": "second-serve/public/$1"
     }
   ],
   "env": {
