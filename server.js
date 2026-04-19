@@ -35,7 +35,7 @@ app.use('/api/volunteers', volunteerRoutes);
 // Aliases to support legacy frontend route names (/api/ngo/...)
 const ngoController = require('./controllers/ngoController');
 const authMiddleware = require('./middleware/auth');
-app.get('/api/ngo/stats', authMiddleware, ngoController.getNgoDashboardStats);
+app.get('/api/ngo/stats', ngoController.getNgoDashboardStats);
 app.get('/api/ngo/requests', authMiddleware, ngoController.getNgoRequests);
 
 // Health check
