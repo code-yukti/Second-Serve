@@ -62,10 +62,16 @@ async function runExpiredDonationCleanup() {
     }
 }
 
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-    void runExpiredDonationCleanup();
-    setInterval(runExpiredDonationCleanup, Number(process.env.EXPIRED_DONATION_CLEANUP_MS) || 15 * 60 * 1000);
-});
+const isVercel = process.env.VERCEL === '1';
+
+if (!isVercel) {
+    // Start local server only outside serverless environments.
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+        void runExpiredDonationCleanup();
+        setInterval(runExpiredDonationCleanup, Number(process.env.EXPIRED_DONATION_CLEANUP_MS) || 15 * 60 * 1000);
+    });
+}
+
+module.exports = app;
