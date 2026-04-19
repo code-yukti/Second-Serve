@@ -4,6 +4,7 @@
   "description": "FeedLink Backend - NGO & Donation Platform",
   "main": "server.js",
   "scripts": {
+    "build": "node -e \"console.log('No build step required for backend')\"",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
